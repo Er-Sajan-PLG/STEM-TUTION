@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact – STEM Tution Pokhara</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--navy:#0a0f2e;--navy2:#111740;--blue:#1a6fff;--cyan:#00d4ff;--green:#00e8a2;--white:#f0f4ff;--muted:#8892b8;--card:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08)}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',sans-serif;background:var(--navy);color:var(--white);overflow-x:hidden}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.5}
+
+    nav{position:fixed;top:0;width:100%;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 6%;background:rgba(10,15,46,0.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    .nav-logo{font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800;background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.95rem;font-weight:500;transition:color .25s}
+    .nav-links a:hover,.nav-links a.active{color:var(--white)}
+    .nav-cta{background:var(--blue);color:#fff;padding:.55rem 1.4rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.9rem;transition:background .25s,transform .2s}
+    .nav-cta:hover{background:var(--cyan);color:var(--navy);transform:translateY(-1px)}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+    .hamburger span{width:24px;height:2px;background:var(--white);border-radius:2px}
+
+    .page-hero{padding:10rem 6% 5rem;text-align:center;position:relative;overflow:hidden}
+    .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.2;pointer-events:none;animation:drift 10s ease-in-out infinite alternate}
+    .blob1{width:400px;height:400px;background:var(--green);top:-100px;left:-100px}
+    .blob2{width:300px;height:300px;background:var(--blue);bottom:-60px;right:-80px;animation-delay:-4s}
+    @keyframes drift{from{transform:translate(0,0)}to{transform:translate(25px,35px)}}
+    .section-tag{display:inline-block;font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:.8rem}
+    h1{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;line-height:1.1}
+    .accent{background:linear-gradient(135deg,var(--cyan),var(--blue),var(--green));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .page-sub{color:var(--muted);font-size:1.05rem;max-width:500px;margin:.8rem auto 0;line-height:1.7}
+
+    section{padding:4rem 6%;position:relative}
+    h2{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800}
+
+    /* MAIN CONTACT LAYOUT */
+    .contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2rem}
+
+    /* CONTACT CARDS */
+    .contact-cards{display:flex;flex-direction:column;gap:1.2rem}
+    .contact-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.8rem;display:flex;align-items:center;gap:1.4rem;text-decoration:none;color:var(--white);transition:border-color .25s,transform .2s}
+    .contact-card:hover{border-color:var(--cyan);transform:translateX(5px)}
+    .contact-card-icon{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0}
+    .ci-blue{background:rgba(26,111,255,.15)}
+    .ci-green{background:rgba(0,232,162,.15)}
+    .ci-red{background:rgba(255,50,50,.12)}
+    .ci-cyan{background:rgba(0,212,255,.12)}
+    .contact-card-info{}
+    .contact-card-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.3rem}
+    .contact-card-val{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem}
+    .contact-card-sub{color:var(--muted);font-size:.85rem;margin-top:.2rem}
+
+    /* INFO PANEL */
+    .info-panel{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;height:fit-content}
+    .info-panel h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.2rem;margin-bottom:1.2rem}
+    .info-row{display:flex;align-items:flex-start;gap:.8rem;padding:.8rem 0;border-bottom:1px solid var(--border)}
+    .info-row:last-child{border-bottom:none}
+    .info-icon{font-size:1.1rem;flex-shrink:0;margin-top:.1rem}
+    .info-label{font-size:.8rem;color:var(--muted);margin-bottom:.15rem;text-transform:uppercase;letter-spacing:.07em}
+    .info-val{font-size:.95rem;font-weight:500}
+
+    /* AVAILABILITY */
+    .avail-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.4rem;margin-top:1.5rem}
+    .avail-day{text-align:center;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.5rem .3rem}
+    .avail-day.open{background:rgba(0,232,162,.08);border-color:rgba(0,232,162,.25)}
+    .avail-day.closed{opacity:.4}
+    .avail-day-name{font-size:.7rem;text-transform:uppercase;color:var(--muted);margin-bottom:.3rem}
+    .avail-dot{width:10px;height:10px;border-radius:50%;margin:0 auto}
+    .avail-day.open .avail-dot{background:var(--green)}
+    .avail-day.closed .avail-dot{background:var(--muted)}
+
+    /* FAQ */
+    #faq{background:var(--navy2)}
+    .faq-list{margin-top:2rem;display:flex;flex-direction:column;gap:1rem}
+    .faq-item{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+    .faq-q{padding:1.2rem 1.5rem;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .2s}
+    .faq-q:hover{background:rgba(255,255,255,.03)}
+    .faq-q .arrow{font-size:.8rem;transition:transform .3s;color:var(--cyan)}
+    .faq-item.open .faq-q .arrow{transform:rotate(180deg)}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s}
+    .faq-item.open .faq-a{max-height:200px}
+    .faq-a-inner{padding:0 1.5rem 1.2rem;color:var(--muted);font-size:.95rem;line-height:1.7}
+
+    /* LOCATION */
+    .location-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;margin-top:2rem;display:flex;align-items:flex-start;gap:1.2rem}
+    .location-icon{font-size:2rem;flex-shrink:0}
+    .location-card h3{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.4rem}
+    .location-card p{color:var(--muted);font-size:.95rem;line-height:1.6}
+
+    .btn-primary{background:linear-gradient(135deg,var(--blue),var(--cyan));color:var(--navy);padding:.85rem 2.2rem;border-radius:50px;font-weight:700;font-size:1rem;text-decoration:none;display:inline-block;transition:transform .2s,box-shadow .2s;box-shadow:0 0 30px rgba(26,111,255,.4)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(26,111,255,.6)}
+
+    footer{background:rgba(0,0,0,.3);border-top:1px solid var(--border);padding:2.5rem 6%}
+    .footer-inner{display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;align-items:flex-start;margin-bottom:2rem}
+    .footer-brand p{color:var(--muted);font-size:.88rem;line-height:1.6;max-width:260px;margin-top:.4rem}
+    .footer-links h4{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;margin-bottom:.8rem}
+    .footer-links ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+    .footer-links a{color:var(--muted);text-decoration:none;font-size:.88rem;transition:color .2s}
+    .footer-links a:hover{color:var(--cyan)}
+    .footer-bottom{border-top:1px solid var(--border);padding-top:1.2rem;text-align:center;color:var(--muted);font-size:.82rem}
+
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .65s ease,transform .65s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    @media(max-width:768px){
+      .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(10,15,46,.97);padding:1.5rem 6%;gap:1rem;border-bottom:1px solid var(--border)}
+      .nav-links.open{display:flex}
+      .hamburger{display:flex}
+      .contact-layout{grid-template-columns:1fr}
+      .avail-grid{grid-template-columns:repeat(4,1fr)}
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">STEM Tution</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="classes.html">Classes</a></li>
+      <li><a href="videos.html">Videos</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <div style="display:flex;gap:1rem;align-items:center;">
+      <a href="tel:9768021317" class="nav-cta">📞 Call Now</a>
+      <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <span class="section-tag">📬 Get In Touch</span>
+    <h1>We'd Love to<br><span class="accent">Hear From You</span></h1>
+    <p class="page-sub">Questions about classes, fees, or enrollment? Reach out — we respond quickly and are happy to help.</p>
+  </div>
+
+  <section>
+    <div class="contact-layout">
+
+      <!-- LEFT: CONTACT CARDS -->
+      <div class="contact-cards">
+        <div class="reveal">
+          <span class="section-tag">📲 Contact Methods</span>
+          <h2 style="margin-bottom:1.2rem">Reach Out Directly</h2>
+        </div>
+
+        <a href="tel:9768021317" class="contact-card reveal">
+          <div class="contact-card-icon ci-blue">📞</div>
+          <div class="contact-card-info">
+            <div class="contact-card-label">Phone & WhatsApp</div>
+            <div class="contact-card-val">+977 9768021317</div>
+            <div class="contact-card-sub">Call or WhatsApp anytime — quickest response</div>
+          </div>
+        </a>
+
+        <a href="mailto:gurungsajan0228@gmail.com" class="contact-card reveal">
+          <div class="contact-card-icon ci-green">✉️</div>
+          <div class="contact-card-info">
+            <div class="contact-card-label">Email</div>
+            <div class="contact-card-val">gurungsajan0228@gmail.com</div>
+            <div class="contact-card-sub">For detailed enquiries — we reply within 24 hours</div>
+          </div>
+        </a>
+
+        <a href="https://www.youtube.com/@LearningHubSTEM" target="_blank" class="contact-card reveal">
+          <div class="contact-card-icon ci-red">▶️</div>
+          <div class="contact-card-info">
+            <div class="contact-card-label">YouTube</div>
+            <div class="contact-card-val">@LearningHubSTEM</div>
+            <div class="contact-card-sub">Free lessons, revision videos and tips</div>
+          </div>
+        </a>
+
+        <div class="contact-card reveal" style="cursor:default;">
+          <div class="contact-card-icon ci-cyan">📍</div>
+          <div class="contact-card-info">
+            <div class="contact-card-label">Location</div>
+            <div class="contact-card-val">Pokhara, Nepal</div>
+            <div class="contact-card-sub">Exact address shared after enrollment confirmation</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: INFO PANEL -->
+      <div class="info-panel reveal">
+        <h3>📅 Class Schedule & Info</h3>
+        <div class="info-row">
+          <div class="info-icon">⏰</div>
+          <div>
+            <div class="info-label">Batch Timings</div>
+            <div class="info-val">6–8 AM · 4–6 PM · 6–8 PM</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📚</div>
+          <div>
+            <div class="info-label">Grades</div>
+            <div class="info-val">Grade 1 to Grade 12</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🔬</div>
+          <div>
+            <div class="info-label">Subjects</div>
+            <div class="info-val">Math, Science (1–10) · Physics, Chemistry, Math (11–12)</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">👥</div>
+          <div>
+            <div class="info-label">Batch Size</div>
+            <div class="info-val">Small groups for personal attention</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">💰</div>
+          <div>
+            <div class="info-label">Fees</div>
+            <div class="info-val">Contact us for current fee structure</div>
+          </div>
+        </div>
+
+        <p style="color:var(--muted);font-size:.8rem;margin-top:1.2rem;">🟢 Available Days</p>
+        <div class="avail-grid">
+          <div class="avail-day open"><div class="avail-day-name">Sun</div><div class="avail-dot"></div></div>
+          <div class="avail-day open"><div class="avail-day-name">Mon</div><div class="avail-dot"></div></div>
+          <div class="avail-day open"><div class="avail-day-name">Tue</div><div class="avail-dot"></div></div>
+          <div class="avail-day open"><div class="avail-day-name">Wed</div><div class="avail-dot"></div></div>
+          <div class="avail-day open"><div class="avail-day-name">Thu</div><div class="avail-dot"></div></div>
+          <div class="avail-day open"><div class="avail-day-name">Fri</div><div class="avail-dot"></div></div>
+          <div class="avail-day closed"><div class="avail-day-name">Sat</div><div class="avail-dot"></div></div>
+        </div>
+        <p style="color:var(--muted);font-size:.78rem;margin-top:.6rem;">* Saturday: Holiday. Schedule may vary — confirm via call.</p>
+
+        <div style="margin-top:1.8rem;text-align:center;">
+          <a href="tel:9768021317" class="btn-primary">📞 Call to Enroll</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- LOCATION NOTE -->
+    <div class="location-card reveal">
+      <div class="location-icon">🗺️</div>
+      <div>
+        <h3>Finding Us in Pokhara</h3>
+        <p>We are based in Pokhara, Gandaki Pradesh, Nepal. The exact classroom address is shared with enrolled students after confirmation. Call or WhatsApp us at <strong>+977 9768021317</strong> and we'll guide you to the location.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="reveal">
+      <span class="section-tag">❓ Common Questions</span>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">What subjects do you teach? <span class="arrow">▼</span></div>
+        <div class="faq-a"><div class="faq-a-inner">We teach Mathematics and Science for Grade 1–10, and Physics, Chemistry, and Mathematics for Grade 11–12, aligned with the Nepali national curriculum (SEE and NEB).</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">How do I enroll my child? <span class="arrow">▼</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Simply call or WhatsApp us at +977 9768021317 or email us. We'll discuss your child's grade and needs, then assign them to the right batch. There's no complicated process!</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">What are the batch timings? <span class="arrow">▼</span></div>
+        <div class="faq-a"><div class="faq-a-inner">We currently run three batches: Early Morning (6–8 AM), After-School (4–6 PM), and Evening (6–8 PM). Contact us to confirm which slots are currently available for your grade.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">What is the fee structure? <span class="arrow">▼</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Fees vary by grade and subject combination. Please contact us directly for the latest fee structure. We believe education should be accessible and are open to discussing options.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">How many students are in each batch? <span class="arrow">▼</span></div>
+        <div class="faq-a"><div class="faq-a-inner">We keep batches small on purpose — so every student gets personal attention, can ask questions freely, and doesn't get left behind.</div></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">Do you provide study materials? <span class="arrow">▼</span></div>
+        <div class="faq-a"><div class="faq-a-inner">Yes — notes, practice problems, and past exam papers are provided as part of the class. We also have a free YouTube channel with supplementary video lessons at youtube.com/@LearningHubSTEM.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">STEM Tution</a>
+        <p>Quality tution in Mathematics, Science, Physics and Chemistry for Grade 1–12 students in Pokhara.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="classes.html">Classes</a></li>
+          <li><a href="videos.html">Videos</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:9768021317">📞 +977 9768021317</a></li>
+          <li><a href="mailto:gurungsajan0228@gmail.com">✉️ gurungsajan0228@gmail.com</a></li>
+          <li><a href="https://www.youtube.com/@LearningHubSTEM" target="_blank">▶️ YouTube Channel</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2025 STEM Tution · Pokhara, Nepal · All rights reserved.</div>
+  </footer>
+
+  <script>
+    function toggleFaq(el){
+      const item=el.parentElement;
+      const isOpen=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    }
+    const reveals=document.querySelectorAll('.reveal');
+    const observer=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);observer.unobserve(e.target)}})},{threshold:.1});
+    reveals.forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>
